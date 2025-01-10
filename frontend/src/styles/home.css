@@ -1,0 +1,149 @@
+.home-container {
+    padding: 20px;
+    background-color: #1db954;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture-container {
+    flex: 0 0 120px;
+    margin-right: 20px;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+
+.time-range-selector {
+    margin: 20px 0;
+}
+
+.time-range-selector label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.time-range-selector select {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.column {
+    width: 45%;
+    background-color: #282828;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.artist-item, .track-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.artist-image, .track-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.artist-item span, .track-item span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Hover effects */
+.artist-item:hover, .track-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive design */ 
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+/* .stats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #282828;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.profile {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
+
+.stats {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.stats h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.stats p {
+    font-size: 18px;
+} */
