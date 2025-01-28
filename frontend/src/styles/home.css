@@ -106,6 +106,23 @@ ul {
     }
 }
 
+.logout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4c4c; /* Red button */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #e04343; /* Darker red on hover */
+}
+
+
 /* .stats-container {
     display: flex;
     flex-direction: row;

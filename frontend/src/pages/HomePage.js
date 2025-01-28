@@ -1,14 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/home.css'; //style file
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
     const [timeRange, setTimeRange] = useState('long_term');
     const [userData, setUserData] = useState(null);
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
     useEffect(() => {
-        // Fetch user stats from the backend
-        fetch(`http://localhost:5000/user-stats?time_range=${timeRange}`)
+        //check for token in url
+        const searchParams = new URLSearchParams(location.search);
+        const tokenFromURL = searchParams.get('token');
+
+        if (tokenFromURL) {
+            //store in localStorage
+            localStorage.setItem('accessToken', tokenFromURL);
+            navigate('/home', { replace: true });
+        }
+    }, [location, navigate]);
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+          // If no token in localStorage, possibly redirect to '/' or just skip fetch
+          console.warn('No access token found in localStorage. Please log in.');
+          return;
+        }
+
+        fetch(`http://localhost:5000/user-stats?time_range=${timeRange}&token=${accessToken}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch user stats');
@@ -17,7 +38,20 @@ const HomePage = () => {
             })
             .then((data) => setUserData(data))
             .catch((error) => console.error('Error fetching user stats:', error));
-    }, [timeRange]);
+        }, [timeRange]);
+
+    const handleLogout = () => {
+        const accessToken = localStorage.getItem('accessToken');
+        //pass token to logout endpoint
+        fetch(`http://localhost:5000/logout?token=${accessToken}`)
+            .then(() => {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('expiresAt');
+                //redirect to login page
+                window.location.href = '/';
+        });
+
+    }
 
     return (
         <div className="home-container">
@@ -85,6 +119,10 @@ const HomePage = () => {
                         </ul>
                     </div>
                 </div>
+
+                <button className="logout-button" onClick={handleLogout}>
+                    Logout
+                </button>
             </>
             ) : (
                 <p>Loading your stats...</p>
